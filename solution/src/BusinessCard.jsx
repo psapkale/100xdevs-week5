@@ -3,9 +3,20 @@ import React from 'react';
 const BusinessCard = ({
    name = 'Lokeshwar',
    description = 'A TA in the 100xDevs Cohort 2.0',
-   linkedin = true,
-   twitter = true,
-   github = false,
+   socials = [
+      {
+         label: 'LinkedIn',
+         link: '',
+      },
+      {
+         label: 'Twitter',
+         link: '',
+      },
+      {
+         label: 'Github',
+         link: '',
+      },
+   ],
    interests = ['Iconic', 'Open Sourse', 'App Dev'],
 }) => {
    return (
@@ -32,9 +43,17 @@ const BusinessCard = ({
          </div>
 
          <div className='flex justify-between gap-20'>
-            {linkedin && <button className='bg-blue-600'>LinkedIn</button>}
-            {twitter && <button className='bg-blue-600'>Twitter</button>}
-            {github && <button className='bg-blue-600'>Github</button>}
+            {socials?.map((handle) => (
+               <button key={Math.random()} className='bg-blue-600'>
+                  <a
+                     href={handle.link}
+                     target='_blank'
+                     className='text-white hover:border-none hover:outline-none hover:text-slate-200'
+                  >
+                     {handle.label}
+                  </a>
+               </button>
+            ))}
          </div>
       </div>
    );
